@@ -1,0 +1,2 @@
+# confirm node modules are ignored when deployed
+node_modules/
