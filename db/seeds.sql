@@ -1,15 +1,16 @@
 -- Starter Employee information for table from Mock-Up video found in README
+USE employees_db
 
 INSERT INTO department (id, dept_name)
 VALUES 
+        (1, "Sales"),
         (2, "Engineering"),
         (3, "Finance"),
-        (4, "Legal"),
-        (1, "Sales");
+        (4, "Legal");
 
 INSERT INTO role (id, "title", dept_id, salary)
 VALUES 
-        (1, "Sales Lead", 1, 100000),
+        (1,"Sales Lead", 1, 100000),
         (2, "Salesperson", 1, 80000),
         (3, "Lead Engineer", 2, 150000),
         (4, "Software Engineer", 2, 120000),

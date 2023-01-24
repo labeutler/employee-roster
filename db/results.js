@@ -1,6 +1,6 @@
 //Providing the combined information from schema, seeds and index.js to compile lists being called
-const { removeListener } = require("process");
-const { rollback } = require("../db/autoLogin");
+// const { removeListener } = require("process");
+// const { rollback } = require("../db/autoLogin");
 const connection = require("../db/autoLogin");
 
 class db {
@@ -26,7 +26,7 @@ findAllDepartments() {
 }
 
 //Find ALL Roles
-findAllRolls() {
+findAllRoles() {
     return this.connection.promise().query("SELECT role.id, role.title, department.dept_name AS department, role.salary FROM role LEFT JOIN department on role.dept_id = department.id;"
     );
 }

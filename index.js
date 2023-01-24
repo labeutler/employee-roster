@@ -1,10 +1,15 @@
-const mysql = require("mysql2");
-const { allowedNodeEnvironmentFlags } = require("process");
+// const mysql = require("mysql2");
+const { prompt } = require("inquirer");
+// const { allowedNodeEnvironmentFlags } = require("process");
 const db = require("./db");
 require("console.table");
 
-// Required information needed:
+init();
 
+// Required information needed:
+function init() {
+    initialPrompt();
+}
 
 
 // Create function to prompt list for what you would like to select from.
@@ -76,7 +81,6 @@ function initialPrompt() {
                 break;
             case "Quit":
                 quit;
-                break;
         }
     })
 }
@@ -84,13 +88,84 @@ function initialPrompt() {
 // In order to see the requested information, provide where it's coming from
 // To View All Employees
 function viewEmployees() {
-    
+    db.findAllEmployees()
+        .then(([rows]) => {
+            let employee = rows;
+            console.log("\n");
+            console.table(employee);
+        })
+        .then(() => initialPrompt());
 }
 
 // To Add Employee
 function addEmployee() {
+    prompt([
+        {
+            name: "first_name",
+            message: "Please provide employees first name:"
+        },
+        {
+            name: "last_name",
+            message: "Please provide employees last name:"
+        }
+    ])
+        .then(res =>  {
+            let firstName = res.first_name;
+            let lastName = res.last_name;
 
-}
+            db.findAllRoles()
+        .then(([rows]) => {
+            let role = rows;
+            const roleChoice = role.map(({ id, title }) => ({
+                name: title,
+                value: id
+            }));
+
+            prompt({
+                type: "list",
+                name: "roleId",
+                message: "What is employee's role?",
+                choices: roleChoice
+            })
+                .then(res => {
+                    let roleId = res.roleId;
+                    
+                db.findAllEmployees()
+                    .then(([rows]) => {
+                        let employee = rows;
+                        const mgrId = employee.map(({
+                            id, first_name, last_name 
+                        }) => ({
+                            name: `${first_name} ${last_name}`,
+                            value: id
+                        }));
+
+                        mgrId.unshift({ name: "None", value: null });
+                        prompt({
+                            type: "list",
+                            name: "mgrId",
+                            message: "who is the employee's manager?",
+                            choices: mgrId
+                        })
+                            .then(res => {
+                                let employee = {
+                                    mgrId: res.mgrId,
+                                    role_id: roleId,
+                                    first_name: firstName,
+                                    last_name: lastName
+                                }
+
+                                db.addEmployee(employee);
+                            })
+                            .then(() => console.log(
+                                `${firstName} ${lastName} has been added to the database.`
+                            ))
+                            .then(() => initialPrompt())
+                    })
+                })
+        })
+    })
+ }
 
 // To Update Employee Role
 function updateEmployeeRole() {
@@ -99,7 +174,13 @@ function updateEmployeeRole() {
 
 // To View All Roles
 function viewRoles() {
-
+    db.findAllRoles()
+        .then(([rows]) => {
+            let role = rows;
+            console.log("\n");
+            console.table(role);
+        })
+        .then(() => initialPrompt());
 }
 
 // To Add Role
@@ -109,7 +190,13 @@ function addRole() {
 
 // To View All Departments
 function viewDepartments() {
-
+    db.findAllDepartments()
+        .then(([rows]) => {
+            let department = rows;
+            console.log("\n");
+            console.table(department);
+        })
+        .then(() => initialPrompt());
 }
 
 // To Add Department
