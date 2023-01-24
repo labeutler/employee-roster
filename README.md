@@ -61,6 +61,12 @@ To add a screenshot, create an `assets/images` folder in your repository and upl
 
 ## Credits
 
+[Stack Overflow](https://stackoverflow.com/questions/36547292/use-promise-to-process-mysql-return-value-in-node-js)
+
+[CodeShack](https://codeshack.io/super-fast-php-mysql-database-class/)
+
+[W3Resource.com](https://www.w3resource.com/node.js/nodejs-mysql.php)
+
 List your collaborators, if any, with links to their GitHub profiles.
 
 If you used any third-party assets that require attribution, list the creators with links to their primary web presence in this section.

@@ -1,6 +1,7 @@
 const mysql = require("mysql2");
 const { allowedNodeEnvironmentFlags } = require("process");
 const db = require("./db");
+require("console.table");
 
 // Required information needed:
 
