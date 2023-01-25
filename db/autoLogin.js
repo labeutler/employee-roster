@@ -1,5 +1,6 @@
 // Adding link for auto login when looking for lists
 const mysql = require("mysql2");
+// const { connection } = require("./results");
 
 //Connecting to database
 const login = mysql.createConnection(
@@ -9,6 +10,10 @@ const login = mysql.createConnection(
         user: 'root',
         password: 'Houghton2018!',
         database: 'employees'
+    });
+
+    login.connect(function (err) {
+        if (err) throw err;
     });
 
 module.exports = login;

@@ -34,3 +34,7 @@ CREATE TABLE employee (
     -- Set constraint to NULL if manager is deleted, non is required.
     CONSTRAINT FK_manager FOREIGN KEY (manager_id) REFERENCES employee(id) ON DELETE SET NULL
 );
+
+SELECT * FROM department;
+SELECT * FROM role;
+SELECT * FROM employee;

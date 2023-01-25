@@ -71,6 +71,9 @@ To add a screenshot, create an `assets/images` folder in your repository and upl
 
 [Helper with ERROR's in .sql](https://www.rathishkumar.in/2016/01/how-to-solve-mysql-error-code-1062.html)
 
+[Helper with creating tables and partitioning](https://dev.mysql.com/doc/refman/8.0/en/partitioning-list.html)
+
+
 List your collaborators, if any, with links to their GitHub profiles.
 
 If you used any third-party assets that require attribution, list the creators with links to their primary web presence in this section.

@@ -1,9 +1,10 @@
 // const mysql = require("mysql2");
-const { prompt } = require("inquirer");
-// const { allowedNodeEnvironmentFlags } = require("process");
-const db = require("./db");
+const inquirer = require("inquirer");
+const express = require("express");
+const db = require("./db/results");
 require("console.table");
-
+const PORT = process.env.PORT || 3001;
+const app = express();
 init();
 
 // Required information needed:
@@ -14,7 +15,7 @@ function init() {
 
 // Create function to prompt list for what you would like to select from.
 function initialPrompt() {
-    prompt([
+    inquirer.prompt([
         {
             type: "list",
             name: "selection",
@@ -99,7 +100,7 @@ function viewEmployees() {
 
 // To Add Employee
 function addEmployee() {
-    prompt([
+    inquirer.prompt([
         {
             name: "first_name",
             message: "Please provide employees first name:"
@@ -121,7 +122,7 @@ function addEmployee() {
                 value: id
             }));
 
-            prompt({
+            inquirer.prompt({
                 type: "list",
                 name: "roleId",
                 message: "What is employee's role?",
@@ -141,7 +142,7 @@ function addEmployee() {
                         }));
 
                         mgrId.unshift({ name: "None", value: null });
-                        prompt({
+                        inquirer.prompt({
                             type: "list",
                             name: "mgrId",
                             message: "who is the employee's manager?",
@@ -185,7 +186,28 @@ function viewRoles() {
 
 // To Add Role
 function addRole() {
-
+    db.findAllDepartments()
+        .then(([rows]) => {
+            let department = rows;
+            const departmentOption = department.map(({ id, name }) => ({
+                name: name,
+                value: id
+            }));
+            inquirer.prompt([
+                {
+                    name: "title",
+                    message: "What is the title of the role?"
+                },
+                {
+                    name: "salary",
+                    message: "What is the salary for this role?"
+                },
+                {
+                    type: "list",
+                    name: departm
+                }
+            ])
+        })
 }
 
 // To View All Departments
@@ -201,10 +223,26 @@ function viewDepartments() {
 
 // To Add Department
 function addDepartment() {
-
+    inquirer.prompt([
+        {
+            name: "name",
+            message: "What is the department name?"
+        }
+    ])
+        .then(res => {
+            let name = res;
+            db.createDepartment(name)
+                .then(() => console.log(`${name.name} has been added to the database.`))
+                .then(() => initialPrompt())
+        })
 }
 
 // To Quit
 function quit() {
-
+    process.exit();
 }
+
+// Create a port to listen on
+app.listen(PORT, () => {
+    console.log(`Server is running on port ${PORT}`);
+});
