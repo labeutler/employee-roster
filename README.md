@@ -69,6 +69,8 @@ To add a screenshot, create an `assets/images` folder in your repository and upl
 
 [w3resource constraints](https://www.w3schools.com/mysql/mysql_constraints.asp)
 
+[Helper with ERROR's in .sql](https://www.rathishkumar.in/2016/01/how-to-solve-mysql-error-code-1062.html)
+
 List your collaborators, if any, with links to their GitHub profiles.
 
 If you used any third-party assets that require attribution, list the creators with links to their primary web presence in this section.

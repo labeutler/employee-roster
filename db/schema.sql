@@ -10,7 +10,7 @@ USE employees_db;
 
 CREATE TABLE department (
     id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
-    dept_name VARCHAR(30) UNIQUE NOT NULL
+    name VARCHAR(30) UNIQUE NOT NULL
 );
 
 CREATE TABLE role (
