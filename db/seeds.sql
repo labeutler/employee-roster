@@ -1,7 +1,7 @@
 -- Starter Employee information for table from Mock-Up video found in README
 use employees_db;
 
-INSERT INTO department (dept_name)
+INSERT INTO department (name)
 VALUES 
         ('Sales'),
         ('Engineering'),

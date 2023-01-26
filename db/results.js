@@ -10,7 +10,7 @@ class db {
 //Find ALL Employees
 findAllEmployees() {
     return this.connection.promise().query(
-        "SELECT employee.id, employee.first_name, employee.last_name, role.title, department.dept_name, role.salary, CONCAT(manager.first_name, ' ', manager.last_name) AS manager FROM employee LEFT JOIN role on employee.role_id = role.id LEFT JOIN department on role.dept_id = department.dept_name LEFT JOIN manager on employee.manager_id = manager.id;"
+        "SELECT employee.id, employee.first_name, employee.last_name, role.title, department.name, role.salary, CONCAT(manager.first_name, ' ', manager.last_name) AS manager FROM employee LEFT JOIN role on employee.role_id = role.id LEFT JOIN department on role.dept_id = department.name LEFT JOIN  employee manager on employee.manager_id = manager.id;"
         );
     }
 
@@ -21,13 +21,13 @@ findAllManagers(employeeId) {
 }
 //Find ALL Departments
 findAllDepartments() {
-    return this.connection.promis().query("SELECT department.dept_name, department.id FROM department;"
+    return this.connection.promis().query("SELECT department.name, department.id FROM department;"
     );
 }
 
 //Find ALL Roles
 findAllRoles() {
-    return this.connection.promise().query("SELECT role.id, role.title, department.dept_name AS department, role.salary FROM role LEFT JOIN department on role.dept_id = department.id;"
+    return this.connection.promise().query("SELECT role.id, role.title, department.name AS department, role.salary FROM role LEFT JOIN department on role.dept_id = department.id;"
     );
 }
 
