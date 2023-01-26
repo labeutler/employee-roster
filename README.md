@@ -49,15 +49,22 @@ N/A
 
 ## Installation
 
-What are the steps required to install your project? Provide a step-by-step description of how to get the development environment running.
+Open the file, then in your command line, type "npm install"
+followed by, "npm run seeds",
+followed by, "npm start"
+
+Once done, you will be prompted to answer questions and see the results of your Employee lists, Department lists, and Role lists.  
 
 ## Usage
 
-Provide instructions and examples for use. Include screenshots as needed.
+[GitHub Link](https://github.com/labeutler/employee-roster)
 
-To add a screenshot, create an `assets/images` folder in your repository and upload your screenshot to it. Then, using the relative file path, add it to your README using the following syntax:
+[![Watch Video](/Recording%20%235.mp4)](/Recording%20%235.mp4)
 
-![alt text](assets/images/screenshot.png)
+
+The video clip above will walk you through what happens when you click on the different options.
+
+Just follow the directions in installation, and you will see what comes next.  
 
 ## Credits
 
